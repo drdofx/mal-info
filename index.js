@@ -1,18 +1,29 @@
 const malScraper = require('mal-scraper');
 const fs = require('fs');
-
-const username = "dofx";
-const type = "anime";
     
 const getUserWatchList = async (username, type) => {
     let userData = await malScraper.getWatchListFromUser(username, type);
     return userData;
 }
 
-getUserWatchList(username, type)
-    .then(data => fs.writeFile(`${username}_${type}.json`, JSON.stringify(data), err => {
-        if (err) {
-            console.error(err);
-        }
-    }))
-    .catch(err => console.error(err));
+const getPastAnimeData = async (year, season, type=null) => {
+    let animeData;
+    if (type === null) {
+        animeData = await malScraper.getSeason(year, season);
+    } else {
+        animeData = await malScraper.getSeason(year, season, type);
+    }
+    return animeData;
+};
+
+const queryAnime = async (query) => {
+    let queryData = await malScraper.getResultsFromSearch(query);
+    return queryData;
+};
+
+module.exports = {
+    getUserWatchList,
+    getPastAnimeData,
+    queryAnime
+}
+

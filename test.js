@@ -30,4 +30,5 @@ console.log(
 Total Distinct Genres: ${genreRes.length}
 List of Genres: ${genreRes.map(el => el.name + ' (' + el.count + ' anime)').join(', ')}
 Anime list of each genre: ${genreRes.map(el => '\n' + el.name + ':\n- ' + el.animeList.join('\n- ')).join('\n')}
+
 Favorite Genre: ${genreRes[0].name}`);
