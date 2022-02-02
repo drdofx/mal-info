@@ -1,6 +1,7 @@
 const fastify = require('fastify')({ logger: true });
 
 fastify.register(require('./routes/trend_routes'), { prefix: '/trend' });
+fastify.register(require('./routes/watchlist_routes'), { prefix: '/watchlist' });
 
 const start = async () => {
     try {
