@@ -1,4 +1,4 @@
-const { getPastAnimeData } = require("../lib/mal-scraper");
+const { getPastAnimeData } = require("../../lib/mal-scraper");
 
 // Sort array of objects by property value of count (int)
 const compare = (a, b) => {

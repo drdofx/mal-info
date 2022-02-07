@@ -1,4 +1,4 @@
-const { getUserWatchList } = require('../lib/mal-scraper.js');
+const { getUserWatchList } = require('../../lib/mal-scraper.js');
 
 // Sort array of objects by property value of count (int)
 const compare = (a, b) => {
@@ -113,7 +113,7 @@ const getInfoFromWatchList = async (username, type) => {
     animeMediaType.sort(compare);
 
     // calculate the mean score of all anime and round it to 2 decimal places
-    meanScore = Math.round((meanScore/animeGivenScore + Number.EPSILON) * 100) / 100;
+    meanScore = animeGivenScore === 0 ? 0 : Math.round((meanScore/animeGivenScore + Number.EPSILON) * 100) / 100;
 
     // calculate the watched episodes percentage of all anime and round it to 2 decimal places
     let watchedEpisodesPercentage = totalActualEpisodes === 0 ? 0 : Math.round((totalNumWatchedEpisodes/totalActualEpisodes + Number.EPSILON) * 100) / 100;
@@ -181,7 +181,7 @@ const getGenreRankFromWatchList = async (username, type, status=null) => {
         });
     } else {
         dataJson.map((data) => {
-            console.log(data.animeMediaTypeString)
+            // console.log(data.animeMediaTypeString)
             data.genres.map((genre) => {
                 let getIndex = genreRes.findIndex(el => el.id === genre.id)
                 if (getIndex !== -1)  {
